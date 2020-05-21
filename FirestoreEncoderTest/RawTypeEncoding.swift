@@ -13,8 +13,8 @@ public protocol RawTypeEncodingWrappable {
     init()
     /// convert weakly typed into a strong typed dict
     init(keyedBy key: Key.Type, from value: EncodedPayload)
-    /// convert strongly typed, raw-representable keys to their raw values
-    func withRawKeys() -> EncodedPayload
+    /// get the raw encoded value from this instance
+    func rawEncoded() -> EncodedPayload
 }
 
 /// a dictionary type that will transform the key to the `Key.RawValue` when encoding
@@ -79,7 +79,7 @@ extension RawTypeEncoding: Codable where Wrapped.Key.RawValue: Codable, Wrapped.
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-        let rawKeyedValue = value.withRawKeys()
+        let rawKeyedValue = value.rawEncoded()
         try container.encode(rawKeyedValue)
     }
     
@@ -110,7 +110,7 @@ where
         )
     }
     
-    public func withRawKeys() -> [Key.RawValue: Value] {
+    public func rawEncoded() -> [Key.RawValue: Value] {
         [Key.RawValue: Value](uniqueKeysWithValues: map { ($0.rawValue, $1) })
     }
     
@@ -135,9 +135,9 @@ extension Optional: RawTypeEncodingWrappable where Wrapped: RawTypeEncodingWrapp
         self = Wrapped.init(keyedBy: Wrapped.Key.self, from: value)
     }
     
-    public func withRawKeys() -> Wrapped.EncodedPayload? {
+    public func rawEncoded() -> Wrapped.EncodedPayload? {
         // delegate the keying to the wrapped type
-        self?.withRawKeys()
+        self?.rawEncoded()
     }
     
 }
