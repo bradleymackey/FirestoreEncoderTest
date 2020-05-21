@@ -31,7 +31,7 @@ struct FixedModel: Codable {
   var obj: [StrongKey: Int] = [.one: 1, .two: 2, .three: 3]
 }
 
-let encoded = try! Firestore.Encoder().encode(Model())
+let encoded = try! Firestore.Encoder().encode(FixedModel())
 // encoded:
 //   - obj (DICTIONARY):
 //      -> K:"one", V:1
