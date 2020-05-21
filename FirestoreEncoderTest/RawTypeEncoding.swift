@@ -85,7 +85,7 @@ extension RawTypeEncoding: Codable where Wrapped.Key.RawValue: Codable, Wrapped.
     
 }
 
-// MARK: - Encodable Types
+// MARK: - Conforming Types
 
 extension Dictionary: RawTypeEncodingWrappable
 where
@@ -127,12 +127,12 @@ extension Optional: RawTypeEncodingWrappable where Wrapped: RawTypeEncodingWrapp
     }
     
     public init(keyedBy key: Wrapped.Key.Type, from value: Wrapped.EncodedPayload?) {
-        guard let value = value else {
+        if let value = value {
+            // delegate the keying to the wrapped type
+            self = Wrapped.init(keyedBy: Wrapped.Key.self, from: value)
+        } else {
             self = nil
-            return
         }
-        // delegate the keying to the wrapped type
-        self = Wrapped.init(keyedBy: Wrapped.Key.self, from: value)
     }
     
     public func rawEncoded() -> Wrapped.EncodedPayload? {
