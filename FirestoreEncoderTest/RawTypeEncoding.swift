@@ -53,7 +53,7 @@ extension RawTypeEncoding: Equatable where Wrapped: Equatable {
 
 extension RawTypeEncoding: Comparable where Wrapped: Comparable {
     
-    public static func < (lhs: RawTypeEncoding<Wrapped>, rhs: RawTypeEncoding<Wrapped>) -> Bool {
+    public static func < (lhs: Self, rhs: Self) -> Bool {
         lhs.value < rhs.value
     }
     
