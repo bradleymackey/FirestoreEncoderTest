@@ -4,12 +4,12 @@ The default Firestore encoder does not encode dictionaries correctly when the ke
 
 For example, the current behaviour is:
 ```swift
-enum StrongKey: Int, Codable {
+enum ExampleKey: String, Codable {
   case one, two, three
 }
 
 struct Model: Codable {
-  var obj: [StrongKey: Int] = [.one: 1, .two: 2, .three: 3]
+  var obj: [ExampleKey: Int] = [.one: 1, .two: 2, .three: 3]
 }
 
 let encoded = try! Firestore.Encoder().encode(Model())
@@ -23,12 +23,12 @@ let encoded = try! Firestore.Encoder().encode(Model())
 //      -> 3
 ```
 
-Clearly this makes **no** sense (how does a Dictionary even become an Array?!). 
+Clearly this makes **no** sense (how does a Dictionary even become an Array?! (I suspect something to do with `NSDictionary` bridging)). 
 This is an experiment to create an `@propertyWrapper` to fix this behaviour, correctly encoding this to a dictionary.
 ```swift
 struct FixedModel: Codable {
   @RawTypeEncoding
-  var obj: [StrongKey: Int] = [.one: 1, .two: 2, .three: 3]
+  var obj: [ExampleKey: Int] = [.one: 1, .two: 2, .three: 3]
 }
 
 let encoded = try! Firestore.Encoder().encode(FixedModel())
