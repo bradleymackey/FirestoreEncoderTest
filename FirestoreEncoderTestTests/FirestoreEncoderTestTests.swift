@@ -33,5 +33,10 @@ class FirestoreEncoderTestTests: XCTestCase {
         print("Now encoding...")
         dump(encoded)
     }
+    
+    func testInit() throws {
+        let initObj = InitalisableModel(test99: [.one: 1])
+        print(initObj)
+    }
 
 }

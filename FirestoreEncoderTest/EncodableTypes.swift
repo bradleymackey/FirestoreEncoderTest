@@ -32,12 +32,6 @@ struct ModelObject: Codable {
 struct InitalisableModel: Codable {
     
     @RawTypeEncoding
-    var test99: [MyKey: Int]?
-    
-    init(
-        test99: [MyKey: Int]? = nil
-    ) {
-        self.test99 = test99
-    }
+    var test99: [MyKey: Int]
     
 }
