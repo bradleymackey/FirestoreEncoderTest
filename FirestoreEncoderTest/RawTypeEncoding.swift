@@ -89,7 +89,6 @@ extension RawTypeEncoding: Codable where Wrapped.Key.RawValue: Codable, Wrapped.
 
 extension Dictionary: RawTypeEncodingWrappable
 where
-    Key: Hashable,
     Key: RawRepresentable,
     Key.RawValue: Hashable
 {
