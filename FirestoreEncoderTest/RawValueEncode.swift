@@ -6,7 +6,7 @@
 //  Copyright © 2020 Bradley Mackey. All rights reserved.
 //
 
-public protocol RawValueEncodingWrappable {
+public protocol RawValueEncodable {
     associatedtype Key where Key: Hashable, Key: RawRepresentable, Key.RawValue: Hashable
     associatedtype EncodedPayload
     /// create an empty, unpopulated instance of the type
@@ -25,7 +25,7 @@ public protocol RawValueEncodingWrappable {
 /// this will transform the key of the dictionary to it's `RawValue` when encoding, which bypasses the
 /// problem
 @propertyWrapper
-public struct RawValueEncode<Wrapped> where Wrapped: RawValueEncodingWrappable {
+public struct RawValueEncode<Wrapped> where Wrapped: RawValueEncodable {
     
     var value: Wrapped
     
@@ -87,7 +87,7 @@ extension RawValueEncode: Codable where Wrapped.Key.RawValue: Codable, Wrapped.E
 
 // MARK: - Conforming Types
 
-extension Dictionary: RawValueEncodingWrappable
+extension Dictionary: RawValueEncodable
 where
     Key: RawRepresentable,
     Key.RawValue: Hashable
@@ -115,7 +115,7 @@ where
     
 }
 
-extension Optional: RawValueEncodingWrappable where Wrapped: RawValueEncodingWrappable {
+extension Optional: RawValueEncodable where Wrapped: RawValueEncodable {
     
     public typealias Key = Wrapped.Key
     public typealias EncodedPayload = Wrapped.EncodedPayload?

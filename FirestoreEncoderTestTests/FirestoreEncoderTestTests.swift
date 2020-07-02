@@ -38,5 +38,55 @@ class FirestoreEncoderTestTests: XCTestCase {
         let initObj = InitalisableModel(test99: [.one: 1])
         print(initObj)
     }
+    
+    func testIdentifier() throws {
+        struct Identifier<Core>: Codable, Hashable, RawRepresentable {
+            
+            init?(rawValue: String) {
+                self.value = rawValue
+            }
+            
+            var rawValue: String {
+                value
+            }
+            
+            typealias RawValue = String
+            
+            var value: String
+            
+            init(_ value: String) {
+                self.value = value
+            }
+            
+            init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                value = try container.decode(String.self)
+            }
+            func encode(to encoder: Encoder) throws {
+                var container = encoder.singleValueContainer()
+                try container.encode(value)
+            }
+        }
+        
+        struct Person: Codable { let name: String }
+        let thing: [Identifier<Person>: Person] = [
+            Identifier<Person>("test"): Person(name: "Jonny Test")
+        ]
+        
+        struct EncodeTest: Codable {
+            @RawValueEncode
+            var thing: [Identifier<Person>: Person]
+            
+            init(thing: [Identifier<Person>: Person]) {
+                self.thing = thing
+            }
+        }
+        
+        let myObj = EncodeTest(thing: thing)
+        let encoded = try! Firestore.Encoder().encode(myObj)
+        print("Now encoding...")
+        dump(encoded)
+        print(encoded)
+    }
 
 }

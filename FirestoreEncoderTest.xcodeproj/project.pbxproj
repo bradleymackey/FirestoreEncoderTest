@@ -17,7 +17,7 @@
 		97EBFB0924770F9900DB822F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97EBFB0724770F9900DB822F /* LaunchScreen.storyboard */; };
 		97EBFB1424770F9900DB822F /* FirestoreEncoderTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EBFB1324770F9900DB822F /* FirestoreEncoderTestTests.swift */; };
 		97EBFB1F2477102900DB822F /* EncodableTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EBFB1E2477102900DB822F /* EncodableTypes.swift */; };
-		97EBFB23247718E700DB822F /* RawTypeEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EBFB22247718E700DB822F /* RawTypeEncoding.swift */; };
+		97EBFB23247718E700DB822F /* RawValueEncode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EBFB22247718E700DB822F /* RawValueEncode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +45,7 @@
 		97EBFB1324770F9900DB822F /* FirestoreEncoderTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreEncoderTestTests.swift; sourceTree = "<group>"; };
 		97EBFB1524770F9900DB822F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97EBFB1E2477102900DB822F /* EncodableTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodableTypes.swift; sourceTree = "<group>"; };
-		97EBFB22247718E700DB822F /* RawTypeEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawTypeEncoding.swift; sourceTree = "<group>"; };
+		97EBFB22247718E700DB822F /* RawValueEncode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawValueEncode.swift; sourceTree = "<group>"; };
 		9CAB427C2F70D48012A0B482 /* Pods-FirestoreEncoderTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirestoreEncoderTest.release.xcconfig"; path = "Target Support Files/Pods-FirestoreEncoderTest/Pods-FirestoreEncoderTest.release.xcconfig"; sourceTree = "<group>"; };
 		A267653321D0DF11482791FE /* Pods-FirestoreEncoderTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirestoreEncoderTest.debug.xcconfig"; path = "Target Support Files/Pods-FirestoreEncoderTest/Pods-FirestoreEncoderTest.debug.xcconfig"; sourceTree = "<group>"; };
 		E0DFCC9CC4AA79D3815BDE73 /* Pods_FirestoreEncoderTestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FirestoreEncoderTestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,7 +110,7 @@
 				97EBFAFE24770F9200DB822F /* SceneDelegate.swift */,
 				97EBFB0024770F9200DB822F /* ContentView.swift */,
 				97EBFB1E2477102900DB822F /* EncodableTypes.swift */,
-				97EBFB22247718E700DB822F /* RawTypeEncoding.swift */,
+				97EBFB22247718E700DB822F /* RawValueEncode.swift */,
 				97EBFB0224770F9900DB822F /* Assets.xcassets */,
 				97EBFB0724770F9900DB822F /* LaunchScreen.storyboard */,
 				97EBFB0A24770F9900DB822F /* Info.plist */,
@@ -314,7 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97EBFAFD24770F9200DB822F /* AppDelegate.swift in Sources */,
-				97EBFB23247718E700DB822F /* RawTypeEncoding.swift in Sources */,
+				97EBFB23247718E700DB822F /* RawValueEncode.swift in Sources */,
 				97EBFB1F2477102900DB822F /* EncodableTypes.swift in Sources */,
 				97EBFAFF24770F9200DB822F /* SceneDelegate.swift in Sources */,
 				97EBFB0124770F9200DB822F /* ContentView.swift in Sources */,

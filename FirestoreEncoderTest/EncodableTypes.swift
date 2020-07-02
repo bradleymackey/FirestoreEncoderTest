@@ -10,7 +10,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-enum MyKey: String, Codable {
+enum MyKey: String, Codable, Hashable {
     case one, two, three
 }
 
@@ -20,10 +20,10 @@ struct ModelObject: Codable {
     @ServerTimestamp
     var myTime: Date? = Date()
     
-    @RawTypeEncoding<[MyKey: String]>
+    @RawValueEncode<[MyKey: String]>
     var myObj = [.one: "nice", .two: "very nice"]
     
-    @RawTypeEncoding
+    @RawValueEncode
     var test99: [MyKey: Int]
     
 }
@@ -31,7 +31,11 @@ struct ModelObject: Codable {
 
 struct InitalisableModel: Codable {
     
-    @RawTypeEncoding
+    @RawValueEncode
     var test99: [MyKey: Int]
+    
+    init(test99: [MyKey: Int]) {
+        self.test99 = test99
+    }
     
 }
